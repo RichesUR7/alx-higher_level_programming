@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-if _name_ == "_main_":
+if __name__ == "__main__":
     import sys
     i = len(sys.argv) - 1
 
@@ -15,5 +15,4 @@ if _name_ == "_main_":
         for arg in sys.argv:
             if i != 0:
                 print("{}: {}".format(i, arg))
-
             i += 1
