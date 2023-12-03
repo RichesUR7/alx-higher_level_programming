@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 def max_integer(my_list=[]):
     length = len(my_list)
 
@@ -12,4 +12,3 @@ def max_integer(my_list=[]):
             max_int = my_list[i]
 
     return (max_int)
-
