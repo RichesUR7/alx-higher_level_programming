@@ -1,6 +1,7 @@
 #include <Python.h>
 
 /* Function Prototypes */
+void print_python_list(PyObject *p);
 void print_python_bytes(PyObject *p);
 void print_python_float(PyObject *p);
 
@@ -30,7 +31,7 @@ void print_python_list(PyObject *p)
 
 	printf("[*] Size of the Python List = %ld\n", size);
 	fflush(stdout);
-	printf("[*] Allocated = %ld\n" list->allocated);
+	printf("[*] Allocated = %ld\n", list->allocated);
 	fflush(stdout);
 	for (i = 0; i < size; i++)
 	{
