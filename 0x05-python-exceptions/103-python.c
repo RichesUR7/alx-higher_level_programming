@@ -107,6 +107,6 @@ void print_python_float(PyObject *p)
 
 	value = ((PyFloatObject *)p)->ob_fval;
 	printf(" value: %s\n", PyOS_double_to_string(value, 'r', 0,
-				py_DTSF_ADD_DOT_0, NULL));
+				Py_DTSF_ADD_DOT_0, NULL));
 	fflush(stdout);
 }
