@@ -45,7 +45,7 @@ class SinglyLinkedList:
     def __init__(self):
         """Initialize a new SinglyLinkedList.
         """
-         self.__head = None
+        self.__head = None
 
     def __str__(self):
         """Prepare for the printing of a SinglyLinkedList.
@@ -61,7 +61,7 @@ class SinglyLinkedList:
         """Insert a new Node into the correct sorted position in the list.
         """
         new = Node(value)
-        if  self.__head is None
+        if  self.__head is None:
             self.__head = new
         elif self.__head.data > value:
             new.next_node = self.__head

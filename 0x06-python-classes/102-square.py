@@ -5,7 +5,7 @@
 class Square:
     """A square with a size and a method to calculate its area.
     """
-    def _init_(self, size=0):
+    def __init__(self, size=0):
         """Initialize a new Square with a size.
         Args:
             size (int): The size of the new square.
@@ -29,35 +29,35 @@ class Square:
     def area(self):
         """Return the current square area.
         """
-        return self._size * self._size
+        return self.__size * self.__size
 
-    def _lt_(self, other):
+    def __lt__(self, other):
         """Compare if the area of self is less than the area of other.
         """
         return self.area() < other.area()
 
-    def _le_(self, other):
+    def __le__(self, other):
         """Compare if the area of self is less than or
         equal to the area of other.
         """
         return self.area() <= other.area()
 
-    def _eq_(self, other):
+    def __eq__(self, other):
         """Compare if the area of self is equal to the area of other.
         """
         return self.area() == other.area()
 
-    def _ne_(self, other):
+    def __ne__(self, other):
         """Compare if the area of self is not equal to the area of other.
         """
         return self.area() != other.area()
 
-    def _gt_(self, other):
+    def __gt__(self, other):
         """Compare if the area of self is greater than the area of other.
         """
         return self.area() > other.area()
 
-    def _ge_(self, other):
+    def __ge__(self, other):
         """Compare if the area of self is greater than or
         equal to the area of other.
         """
