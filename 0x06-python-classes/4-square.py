@@ -6,7 +6,7 @@ class Square:
     """A square with a size and a method to calculate its area.
     """
     def __init__(self, size=0):
-        """Initializes a new Square with a size.
+        """Initialize a new Square with a size.
         Args:
             size (int): The size of the new square.
         """
