@@ -1,23 +1,23 @@
 #!/usr/bin/python3
-"""Square class defination"""
+"""Square class definition"""
 
 
 class Square:
     """Square class body"""
 
-    def _init_(self, size=0, position=(0, 0)):
-        """Square constructor .
+    def __init__(self, size=0, position=(0, 0)):
+        """Square constructor.
         Args:
             size (int): The size of the new square.
-            square position (int, int): of Tupple.
-         """
-         self.size = size
-         self.position = position
+            square position (int, int): of Tuple.
+        """
+        self.size = size
+        self.position = position
 
     @property
     def size(self):
-        """Setter and getter of a  square."""
-        return (self.__size)
+        """Getter for size."""
+        return self.__size
 
     @size.setter
     def size(self, value):
@@ -29,8 +29,8 @@ class Square:
 
     @property
     def position(self):
-        """Getter and Setter for position of the square."""
-        return (self.__position)
+        """Getter for position."""
+        return self.__position
 
     @position.setter
     def position(self, value):
@@ -43,16 +43,16 @@ class Square:
 
     def area(self):
         """Return new area of the square."""
-        return (self._size * self._size)
+        return self.__size * self.__size
 
     def my_print(self):
-        """Print the stdout the square with the character."""
+        """Print the square with the character."""
         if self.__size == 0:
             print("")
             return
 
-                                                                                                                                                                                                                                                    [print("") for i in range(0, self.__position[1])]
-       for i in range(0, self.__size):
-           [print(" ", end="") for j in range(0, self.__position[0])]
-           [print("#", end="") for k in range(0, self.__size)]
-           print("")
+        for _ in range(self.__position[1]):
+            print("")
+        for _ in range(self.__size):
+            print(" " * self.__position[0] + "#" * self.__size)
+
