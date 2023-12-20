@@ -4,7 +4,7 @@
 
 class Square:
     """A square with a size, a position, a method to calculate its area,
-     ./100-main.pyand a method to print it.
+    and a method to print it.
                     """
                         def _init_(self, size=0, position=(0, 0)):
                                     """Initialize a new Square with a size and a position.
