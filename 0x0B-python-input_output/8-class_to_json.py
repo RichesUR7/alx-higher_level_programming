@@ -18,4 +18,4 @@ def class_to_json(obj):
     Returns:
         dict: The dictionary representation of obj.
     """
-    return obj._dict_
+    return vars(obj)

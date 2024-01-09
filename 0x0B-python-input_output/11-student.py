@@ -17,7 +17,7 @@ class Student:
         age
     """
 
-    def _init_(self, first_name, last_name, age):
+    def __init__(self, first_name, last_name, age):
         """
         Initializes the Student instance.
 
@@ -42,8 +42,8 @@ class Student:
         Returns:
             dict: The dictionary representation of the Student instance.
         """
-        if attrs is None or type(attrs) is not list:
-            return self._dict_
+        if attrs is None:
+            return vars(self)
         else:
             return {
                     attr: getattr(self, attr)
