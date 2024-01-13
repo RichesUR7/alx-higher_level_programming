@@ -1,203 +1,75 @@
->>> 7_base_geometry = __import_('7-base_geometry')
->>> BaseGeometry = _7_base_geometry.BaseGeometry
->>> bg = BaseGeometry()
->>> bg.integer_validator("my_int", 12)
->>> bg.integer_validator("width", 89)
+The ``1-my_list`` module
+============================
 
-# Correct Class Type test:
->>> bg = BaseGeometry()
->>> type(bg) == BaseGeometry
-True
+Using ``1-mylist``
+---------------------
 
+Import function from module:
+    >>> MyList = __import__('1-my_list').MyList
 
-# Area() instance method
-----------------------
-# Area method is an instance method:
->>> type(BaseGeometry._dict_['area'])
-<class 'function'>
+Correct Class Type test:
+    >>> ml = MyList()
+    >>> type(ml) == MyList
+    True
 
-# Area method normal test:
->>> bg.area()
-Traceback (most recent call last):
-Exception: area() is not implemented
+Correct Instance test:
+    >>> ml = MyList()
+    >>> isinstance(ml, list)
+    True
 
-# Test with a string
->>> try:
-...     bg.integer_validator("name", "John")
-... except Exception as e:
-...     print("[{}] {}".format(e._class.__name_, e))
-[TypeError] name must be an integer
+print_sorted method is an instance method:
+    >>> type(MyList.__dict__['print_sorted'])
+    <class 'function'>
 
-# Test with zero
->>> try:
-...     bg.integer_validator("age", 0)
-... except Exception as e:
-...     print("[{}] {}".format(e._class.__name_, e))
-[ValueError] age must be greater than 0
+print_sorted method called via class with no args:
+    >>> ml.__class__.print_sorted()
+    Traceback (most recent call last):
+    TypeError: print_sorted() missing 1 required positional argument: 'self'
 
-# Test with a negative integer
->>> try:
-...     bg.integer_validator("distance", -4)
-... except Exception as e:
-...     print("[{}] {}".format(e._class.__name_, e))
-[ValueError] distance must be greater than 0
+print_sorted method called with 1 arg:
+    >>> ml.print_sorted([4, 2, 5])
+    Traceback (most recent call last):
+    TypeError: print_sorted() takes 1 positional argument but 2 were given
 
-# Test with a float
->>> try:
-...     bg.integer_validator("score", 9.5)
-... except Exception as e:
-...     print("[{}] {}".format(e._class.__name_, e))
-[TypeError] score must be an integer
+print_sorted method called with 2 args:
+    >>> ml.print_sorted([4, 2, 5], 1)
+    Traceback (most recent call last):
+    TypeError: print_sorted() takes 1 positional argument but 3 were given
 
-# Test with None
->>> try:
-...     bg.integer_validator("value", None)
-... except Exception as e:
-...     print("[{}] {}".format(e._class.__name_, e))
-[TypeError] value must be an integer
+Empty list test:
+    >>> ml = MyList()
+    >>> ml.print_sorted()
+    []
 
-# Test with a boolean
->>> try:
-...     bg.integer_validator("flag", True)
-... except Exception as e:
-...     print("[{}] {}".format(e._class.__name_, e))
-[TypeError] flag must be an integer
+Normal list test:
+    >>> ml = MyList([2, 10, 1])
+    >>> ml.print_sorted()
+    [1, 2, 10]
 
-# Test with a large integer
->>> bg.integer_validator("large_int", 10**18)
+Normal list test 2:
+    >>> ml = MyList([1, 4, 2, 3, 5])
+    >>> ml.print_sorted()
+    [1, 2, 3, 4, 5]
 
-# Test with a boolean False
->>> try:
-...     bg.integer_validator("flag", False)
-... except Exception as e:
-...     print("[{}] {}".format(e._class.__name_, e))
-[TypeError] flag must be an integer
+Negative ints list test:
+    >>> ml = MyList([-1000, -98, -232565, 0, -23423434, -123])
+    >>> ml.print_sorted()
+    [-23423434, -232565, -1000, -123, -98, 0]
 
-# Test with a complex number
->>> try:
-...     bg.integer_validator("complex_num", 1 + 2j)
-... except Exception as e:
-...     print("[{}] {}".format(e._class.__name_, e))
-[TypeError] complex_num must be an integer
+Original list unchanged:
+    >>> ml = MyList([2, 10, 1, -10, 20, 100, 0])
+    >>> ml.print_sorted()
+    [-10, 0, 1, 2, 10, 20, 100]
+    >>> ml
+    [2, 10, 1, -10, 20, 100, 0]
 
-# Test with a list
->>> try:
-...     bg.integer_validator("my_list", [1, 2, 3])
-... except Exception as e:
-...     print("[{}] {}".format(e._class.__name_, e))
-[TypeError] my_list must be an integer
+List already in order:
+    >>> ml = MyList([-10, 0, 1, 2, 10, 20, 100])
+    >>> ml.print_sorted()
+    [-10, 0, 1, 2, 10, 20, 100]
 
-# Test with a dictionary
->>> try:
-...     bg.integer_validator("my_dict", {"key": "value"})
-... except Exception as e:
-...     print("[{}] {}".format(e._class.__name_, e))
-[TypeError] my_dict must be an integer
-
-# Test with a tuple
->>> try:
-...     bg.integer_validator("my_tuple", (1, 2, 3))
-... except Exception as e:
-...     print("[{}] {}".format(e._class.__name_, e))
-[TypeError] my_tuple must be an integer
-
-# Test with a large negative integer
->>> try:
-...     bg.integer_validator("large_neg_int", -10**18)
-... except Exception as e:
-...     print("[{}] {}".format(e._class.__name_, e))
-[ValueError] large_neg_int must be greater than 0
-
-# Test with the maximum possible integer
->>> bg.integer_validator("max_int", 2**31 - 1)
-
-# Test with the minimum possible integer
->>> try:
-...     bg.integer_validator("min_int", -2**31)
-... except Exception as e:
-...     print("[{}] {}".format(e._class.__name_, e))
-[ValueError] min_int must be greater than 0
-
-# Test with an empty string
->>> try:
-...     bg.integer_validator("empty_str", "")
-... except Exception as e:
-...     print("[{}] {}".format(e._class.__name_, e))
-[TypeError] empty_str must be an integer
-
-# Test with a string containing a number
->>> try:
-...     bg.integer_validator("num_str", "123")
-... except Exception as e:
-...     print("[{}] {}".format(e._class.__name_, e))
-[TypeError] num_str must be an integer
-
-# Test with a string containing a negative number
->>> try:
-...     bg.integer_validator("neg_num_str", "-123")
-... except Exception as e:
-...     print("[{}] {}".format(e._class.__name_, e))
-[TypeError] neg_num_str must be an integer
-
-# Test with a string containing a float
->>> try:
-...     bg.integer_validator("float_str", "9.5")
-... except Exception as e:
-...     print("[{}] {}".format(e._class.__name_, e))
-[TypeError] float_str must be an integer
-
-# Test with a negative float
->>> try:
-...    bg.integer_validator("neg_float", -9.5)
-... except Exception as e:
-...    print("[{}] {}".format(e._class.__name_, e))
-[TypeError] neg_float must be an integer
-
-# Test with a large float
->>> try:
-...    bg.integer_validator("large_float", 10**18 + 0.5)
-... except Exception as e:
-...    print("[{}] {}".format(e._class.__name_, e))
-[TypeError] large_float must be an integer
-
-# Test with an empty list
->>> try:
-...    bg.integer_validator("empty_list", [])
-... except Exception as e:
-...    print("[{}] {}".format(e._class.__name_, e))
-[TypeError] empty_list must be an integer
-
-# Test with an empty dictionary
->>> try:
-...    bg.integer_validator("empty_dict", {})
-... except Exception as e:
-...    print("[{}] {}".format(e._class.__name_, e))
-[TypeError] empty_dict must be an integer
-
-# Test with an empty tuple
->>> try:
-...    bg.integer_validator("empty_tuple", ())
-... except Exception as e:
-...    print("[{}] {}".format(e._class.__name_, e))
-[TypeError] empty_tuple must be an integer
-
-# Test with a None value
->>> try:
-...    bg.integer_validator("none_value", None)
-... except Exception as e:
-...    print("[{}] {}".format(e._class.__name_, e))
-[TypeError] none_value must be an integer
-
-# Test with a boolean False value
->>> try:
-...    bg.integer_validator("false_value", False)
-... except Exception as e:
-...    print("[{}] {}".format(e._class.__name_, e))
-[TypeError] false_value must be an integer
-
-# Test with a boolean True value
->>> try:
-...    bg.integer_validator("true_value", True)
-... except Exception as e:
-...    print("[{}] {}".format(e._class.__name_, e))
-[TypeError] true_value must be an integer
+Test append:
+    >>> ml = MyList()
+    >>> ml.append(10)
+    >>> ml
+    [10]
